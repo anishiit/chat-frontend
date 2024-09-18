@@ -100,11 +100,11 @@ export default function UserConnectionPage() {
   return (
     <div className="min-h-screen bg-indigo-900 text-white">
       <header className="bg-indigo-800 p-4 flex items-center">
-        <Link href="/home" className="mr-4">
+        {/* <Link href="/home" className="mr-4">
           <Button variant="ghost" size="icon">
             <ArrowLeft className="h-6 w-6" />
           </Button>
-        </Link>
+        </Link> */}
         <h1 className="text-xl font-bold">Connect with Users</h1>
       </header>
 

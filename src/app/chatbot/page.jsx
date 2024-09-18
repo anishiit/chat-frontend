@@ -73,14 +73,13 @@ export default function Component() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-700 to-purple-900 text-white flex flex-col">
-      <header className="p-4 sm:p-6 flex justify-between items-center">
+      <header className="p-2 sm:p-2 flex justify-between items-center">
         <Button
           variant="ghost"
           className="text-white hover:bg-white/20"
           onClick={() => {/* Handle navigation */}}
         >
-          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-          <span className="text-sm sm:text-base">Back</span>
+         
         </Button>
         <h1 className="text-2xl sm:text-3xl font-bold">TheraWin ChatBot</h1>
         <div className="w-10 sm:w-12"></div> {/* Placeholder for alignment */}
@@ -88,7 +87,7 @@ export default function Component() {
 
       <main className="flex-grow container mx-auto px-4 py-8 flex flex-col" style={{ height: 'calc(100vh - 140px)' }}>
         <Card className="bg-white/10 backdrop-blur-md border-white/20 flex-grow overflow-hidden flex flex-col">
-          <CardContent className="p-4 flex-grow overflow-y-auto" style={{ height: 'calc(100% - 70px)' }}>
+          <CardContent className="p-4 flex-grow overflow-y-auto " style={{ height: 'calc(100% - 70px)' }}>
             <AnimatePresence>
               {messages.map((message) => (
                 <motion.div
