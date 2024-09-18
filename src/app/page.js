@@ -251,7 +251,7 @@ export default function Component() {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                          <p className="mb-4 italic relative z-10">"{testimonial.text}"</p>
+                          <p className="mb-4 italic relative z-10">{testimonial.text}</p>
                         </motion.div>
                         <motion.div
                           className="flex justify-between items-center relative z-10"
