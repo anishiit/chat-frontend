@@ -43,7 +43,7 @@ export default function LoginPage() {
           localStorage.setItem("username" , res.data.username)
           localStorage.setItem("userId" , res.data.userId)
         }
-        router.push('/message1')
+        router.push('/message')
       })
       .catch((err) => {
         console.log(err);
