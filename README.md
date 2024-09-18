@@ -1,6 +1,6 @@
 # 💬 **Real-time Chat Application**
 
-![Chat App](https://via.placeholder.com/800x400.png?text=Real-time+Chat+App)
+![Chat App]("./public/assets/home.png")
 
 **Live Demo**: [Explore the App Here](https://unrivaled-melba-047ef2.netlify.app/)  
 ⚠️ *Backend deployed on Render (free tier, may take a few seconds to load)*
