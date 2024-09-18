@@ -371,15 +371,17 @@ export default function WhatsAppClone() {
   }
 
   const handleCreateGroup = async (e) => {
+    let currUserName1 ;
     console.log("creating group");
     if(typeof window !== "undefined"){
       setCurrentUsername(localStorage.getItem("username"));
       // setCurrentUserId(localStorage.getItem("userId"));
+      currUserName1= localStorage.getItem("username");
     }
-    console.log(currentUsername , newGroupName , selectedContacts)
+    // console.log(currentUsername , newGroupName , selectedContacts)
     try {
       await axios.post(createGroupUrl, 
-        {groupname:newGroupName , groupmembers:selectedContacts , createdBy:currentUsername }
+        {groupname:newGroupName , groupmembers:selectedContacts , createdBy:currUserName1 }
       ).then((res) => {
         console.log(res.data)
       })
