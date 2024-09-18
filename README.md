@@ -86,12 +86,39 @@ graph TD;
 ## 🖥️ **Screenshots**
 
 - **Chat Interface**  
-  ![Chat Interface](https://via.placeholder.com/600x300.png?text=Chat+Interface)
+  ![Chat Interface](./public/assets/personal.png)
 
-- **Video Call**  
-  ![Video Call](https://via.placeholder.com/600x300.png?text=Video+Call)
+- **Group Chat Interface**  
+  ![Group Chat Interface](./public/assets/grp.png)
+
+- **Video Call Interface**  
+  ![Video Call Interface](./public/assets/videoCall.png)
+
+- **AiChat Bot Interface**  
+  ![AiChat Bot Interface](./public/assets/chatBot.png)
+
+
+- **Small Screen Interface**  
+  ![Small Screen Call](./public/assets/smallScrn.jpg)
+
+- **Connection Interface**  
+  ![Connection Interface](./public/assets/connection.png)
 
 ---
+
+
+## Chat Backend
+
+This repository contains the backend code for the chat application.
+
+- **Repository Link:** [Chat Backend](https://github.com/anishiit/chat-backend)
+
+## ZEOGOCLOUD
+
+This repository contains the UI kits and group setup for ZEOGOCLOUD using Next.js.
+
+- **Repository Link:** [ZEOGOCLOUD](https://github.com/anishiit/nextjs-zegocloud-uikits-groul)
+
 
 ## 🏃‍♂️ **Getting Started**
 
