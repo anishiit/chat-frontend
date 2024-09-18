@@ -17,7 +17,7 @@ Welcome to the **Real-time Chat Application**—an interactive chat platform tha
 - **Real-time Messaging**: Chat instantly with friends, powered by **Socket.io**.
 - **Group Chats**: Create and manage groups effortlessly.
 - **TheraWin AI ChatBot**: Get therapy assistance directly from our AI-powered chatbot.
-- **Video Calls**: Face-to-face conversations using the built-in **WebRTC** video call feature.
+- **Video Calls**: Face-to-face conversations using the built-in **ZEGOCLOUD** video call feature.
 - **Modern UI**: Experience elegant design and fluid animations with **Framer Motion** and **ShadCN UI**.
 - **Secure**: Robust authentication with **JWT**.
 
@@ -79,7 +79,7 @@ graph TD;
 
 ---
 
-- Users can start video calls within the app using **WebRTC** technology.
+- Users can start video calls within the app using **ZEGOCLOUD** technology.
 
 ---
 
