@@ -251,6 +251,7 @@ export default function WhatsAppClone() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedContacts, setSelectedContacts] = useState([])
   const [currentUsername, setCurrentUsername] = useState('');
+  const [msg , setMsg] = useState("");
 
   async function getUserChats(username) {
     try {
@@ -371,6 +372,7 @@ export default function WhatsAppClone() {
   }
 
   const handleCreateGroup = async (e) => {
+    setMsg("Group is being created..")
     let currUserName1 ;
     console.log("creating group");
     if(typeof window !== "undefined"){
@@ -383,7 +385,20 @@ export default function WhatsAppClone() {
       await axios.post(createGroupUrl, 
         {groupname:newGroupName , groupmembers:selectedContacts , createdBy:currUserName1 }
       ).then((res) => {
-        console.log(res.data)
+        // console.log(res.data.group)
+        const group = res.data.group;
+        const obj = {
+          avatar: "",
+          _id: group._id,
+          name: group.groupname,
+          lastMessage: "",
+          messages: group.allMessages,
+          isGroup: true,
+          members:group.groupmembers,
+        };
+        setGroups(prev => [...prev, obj]);
+        setMsg("Group created successfully")
+        setTimeout(() => {setIsDialogOpen(false)},1500);
       })
       .catch((err) => {
         console.log(err);
@@ -435,6 +450,7 @@ export default function WhatsAppClone() {
               </DialogTrigger>
               <DialogContent className='bg-white text-black ' >
                 <DialogHeader>
+                  <p className='text-center text-blue-500 text-sm'>{msg}</p>
                   <DialogTitle>Create New Group</DialogTitle>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
