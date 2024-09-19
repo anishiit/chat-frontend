@@ -98,12 +98,14 @@ export default function LoginPage() {
         </CardContent>
         <CardFooter>
             <p className="text-sm text-center w-full">{error}</p>
-          <p className="text-sm text-center w-full">
-            Do not have an account?
-            <Link href="/signup" className="text-indigo-600 hover:underline">
-              Sign up
-            </Link>
-          </p>
+            <div className="flex justify-center w-full">
+               <p className="text-sm text-center">
+                   Do not have an account?
+                 <Link href="/signup" className="text-indigo-600 hover:underline">
+                                 Sign up
+                            </Link>
+                         </p>
+                        </div>
         </CardFooter>
       </Card>
     </div>

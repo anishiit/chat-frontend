@@ -292,7 +292,7 @@ export default function Component() {
               transition={{ delay: 0.5 }}
               className="text-center mt-16"
             >
-              <Button size="lg" className="bg-white text-purple-900 hover:bg-purple-100 px-8 py-6 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <Button onClick={() => {router.push('/signup')}} size="lg" className="bg-white text-purple-900 hover:bg-purple-100 px-8 py-6 text-lg rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                 Get Started Now
               </Button>
             </motion.div>
