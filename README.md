@@ -7,6 +7,13 @@
 
 ---
 
+## 👨‍💻 **Developer Info**
+- **Name**: Anish Kumar Singh
+- **University**: Indian Institute of Technology (IIT) Dhanbad
+- **Department**: Environmental Science & Engineering
+
+
+
 ## 🚀 **Overview**
 Welcome to the **Real-time Chat Application**—an interactive chat platform that allows users to connect, message, create groups, video call, and even seek therapy assistance via **TheraWin AI ChatBot**. This app is perfect for individuals and groups who value seamless communication with advanced features.
 
