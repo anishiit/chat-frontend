@@ -21,7 +21,7 @@ const features = [
     title: "Video Calling", 
     description: "Connect face-to-face with therapists", 
     color: "bg-pink-100 text-pink-900",
-    image: "/placeholder.svg",
+    image: "/assets/videoCall.png",
     details: "Experience high-quality, secure video sessions with licensed therapists from the comfort of your home. Our advanced platform ensures smooth, lag-free conversations, allowing you to focus on your mental well-being."
   },
   { 
@@ -29,7 +29,7 @@ const features = [
     title: "TheraWin ChatBot", 
     description: "24/7 AI-powered support", 
     color: "bg-green-100 text-green-900",
-    image: "/placeholder.svg",
+    image: '/assets/chatBot.png',
     details: "Our AI-powered ChatBot is always here for you, providing instant support, coping strategies, and personalized recommendations. It's like having a supportive friend in your pocket, ready to help at any time of day or night."
   },
   { 
@@ -37,7 +37,7 @@ const features = [
     title: "Chat with Friends", 
     description: "Build a supportive community", 
     color: "bg-yellow-100 text-yellow-900",
-    image: "/placeholder.svg",
+    image: "/assets/personal.png",
     details: "Connect with like-minded individuals in our moderated, safe chat rooms. Share experiences, offer support, and build lasting friendships with people who understand your journey. Together, we're stronger."
   }
 ]
