@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import Link from "next/link"
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { setCookie } from 'nookies';
 
 const backendurl = "https://chat-backend-rx0j.onrender.com";
 const loginUserUrl = `${backendurl}/api/user/login`
@@ -43,6 +44,13 @@ export default function LoginPage() {
           localStorage.setItem("username" , res.data.username)
           localStorage.setItem("userId" , res.data.userId)
         }
+        setCookie(null, 'username', res.data.username, {
+          maxAge: 30 * 24 * 60 * 60, // Cookie expiration time
+          path: '/', // Accessible across all routes
+        });
+        
+        
+
         router.push('/message')
       })
       .catch((err) => {

@@ -5,7 +5,7 @@ import {  Users, MessageCircle, MessageCircleMore, Video, LogOut, Menu, X } from
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion'
 import {  useRouter,usePathname } from 'next/navigation';
-
+import { destroyCookie } from 'nookies';
 export default function Navbar() {
 
     const router = useRouter()
@@ -20,8 +20,11 @@ export default function Navbar() {
         // Clear user data from localStorage or sessionStorage
         if(typeof window !== "undefined"){
         localStorage.clear();
+          destroyCookie(null, 'username', { path: '/' });
         router.push("/login");
         }
+      
+
     };
 
     // useEffect(() => {

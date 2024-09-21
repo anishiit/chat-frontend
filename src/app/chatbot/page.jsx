@@ -1,5 +1,5 @@
 'use client'
-
+import { useRouter } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,21 @@ const backendurl = "https://chat-backend-rx0j.onrender.com";
 const chatbotUrl = `${backendurl}/api/chatbot/`
 
 export default function Component() {
+//   const router = useRouter()
+//   if(typeof window !== 'undefined'){
+// const user= localStorage.getItem("username")
+
+//   }
+  // useEffect(()=>{
+  //   let LoginedUser;
+  //   if(typeof window !== 'undefined'){
+  //   LoginedUser = localStorage.getItem("username");
+  //   }
+  //   if(!LoginedUser){
+  //     router.push('/login')
+  //   }
+  // },[router])
+
   const [messages, setMessages] = useState([
     { id: 1, content: "Hello! How can I assist you today?", sender: 'bot' }
   ]);
