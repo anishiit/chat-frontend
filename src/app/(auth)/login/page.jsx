@@ -1,4 +1,6 @@
-"use client";
+
+
+'use client';
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -13,54 +15,45 @@ const backendurl = "https://chat-backend-rx0j.onrender.com";
 const loginUserUrl = `${backendurl}/api/user/login`
 
 export default function LoginPage() {
+  const router = useRouter()
 
-    const router = useRouter()
-
-    const [error ,setError] = useState("")
-    const [inputs, setInputs] = useState({
-        email: "",
-        password: "",
-      });
-
-    const [email , setEmail] = useState("");
-    const [password , setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("")
-    setError("");
     // Check if any field is empty
-    if ( !email || !password ) {
+    if (!email || !password) {
       setError("All fields are required!");
       return; // Exit the function if any field is empty
     }
     try {
-      await axios.post(loginUserUrl , {
-        email:email,
-        password:password,
+      await axios.post(loginUserUrl, {
+        email: email,
+        password: password,
       })
-      .then((res) => {
-        if(typeof window !== undefined){
-          localStorage.setItem("username" , res.data.username)
-          localStorage.setItem("userId" , res.data.userId)
-        }
-        setCookie(null, 'username', res.data.username, {
-          maxAge: 30 * 24 * 60 * 60, // Cookie expiration time
-          path: '/', // Accessible across all routes
-        });
-        
-        
+        .then((res) => {
+          if (typeof window !== undefined) {
+            localStorage.setItem("username", res.data.username)
+            localStorage.setItem("userId", res.data.userId)
+          }
+          setCookie(null, 'username', res.data.username, {
+            maxAge: 30 * 24 * 60 * 60, // Cookie expiration time
+            path: '/', // Accessible across all routes
+          });
 
-        router.push('/message')
-      })
-      .catch((err) => {
-        console.log(err);
-        // setError(err.response.data.message);
-      })
-  
+          router.push('/message')
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(err.response?.data?.message || "An error occurred");
+        })
+
     } catch (error) {
       console.error(error);
-    //   setError(error.message)
+      setError(error.message || "An error occurred")
     }
   };
 
@@ -104,16 +97,14 @@ export default function LoginPage() {
             </div>
           </form>
         </CardContent>
-        <CardFooter>
-            <p className="text-sm text-center w-full">{error}</p>
-            <div className="flex justify-center w-full">
-               <p className="text-sm text-center">
-                   Do not have an account?
-                 <Link href="/signup" className="text-indigo-600 hover:underline">
-                                 Sign up
-                            </Link>
-                         </p>
-                        </div>
+        <CardFooter className="flex flex-col items-center">
+          {error && <p className="text-sm text-red-500 mb-2">{error}</p>}
+          <p className="text-sm text-center">
+            Do not have an account?{' '}
+            <Link href="/signup" className="text-indigo-600 hover:underline">
+              Sign up
+            </Link>
+          </p>
         </CardFooter>
       </Card>
     </div>
