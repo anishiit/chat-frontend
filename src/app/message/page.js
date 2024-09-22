@@ -23,7 +23,7 @@ let username;
 // Check if window is defined (i.e., code is running in the browser)
 if (typeof window !== "undefined") {
   // Check if localStorage is available
-  username = (localStorage.getItem("username") ? (localStorage.getItem("username")) : ("three"));
+  username = (localStorage.getItem("username") ? (localStorage.getItem("username")) : (""));
 }
 const backendurl = "https://chat-backend-rx0j.onrender.com";
 const getUserDataUrl = `${backendurl}/api/user/getuser`;
@@ -287,7 +287,7 @@ function ChatView({ chat, onBack }) {
   )
 }
 
-export default function mainChatBar() {
+export default function MainChatBar() {
 
 
   const [searchTerm, setSearchTerm] = useState('')
