@@ -26,7 +26,7 @@ if (typeof window !== "undefined") {
   // Check if localStorage is available
   username = (localStorage.getItem("username") ? (localStorage.getItem("username")) : ("three"));
 }
-const backendurl = "https://chat-backend-rx0j.onrender.com";
+const backendurl = "http://localhost:8000";
 const getUserDataUrl = `${backendurl}/api/user/getuser`;
 const createNewChatUrl = `${backendurl}/api/chat/createnewchat`;
 const getUserChatsUrl = `${backendurl}/api/chat/getuserchats`;
@@ -35,6 +35,8 @@ const pushMessageInGroup = `${backendurl}/api/groupchat/pushmessageingroup`
 const getChatByIdUrl = `${backendurl}/api/chat/getchatbyid`;
 const getGroupChatByIdUrl = `${backendurl}/api/groupchat/getgroupchatbyid`;
 const createGroupUrl = `${backendurl}/api/groupchat/creategroup`;
+
+
 
 function ChatView({ chat, onBack }) {
 
@@ -52,7 +54,12 @@ function ChatView({ chat, onBack }) {
   const [roomId , setRoomId] = useState(chat._id)
   const [change , setChange] = useState(1);
   const [Chat , setChat] = useState(chat);
-
+  const [ typing ,setTyping] = useState(false);
+  const [otherUserTyping , setOtherTypingUser] = useState(false);
+  const [typingUser , setTypingUser] =useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const [typingTimer, setTypingTimer] = useState(null);
+  const typingDelay = 2000; //
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "auto", block: "end" })
   }
@@ -61,6 +68,22 @@ function ChatView({ chat, onBack }) {
     return (io(backendurl));
   },[roomId])
 
+  const handletyping=(e)=>{
+    const usernamme = currentUser.username;
+    socket.emit("typing", {roomId ,fromUserName:username} )
+
+    clearTimeout(typingTimer);
+    // Set a new timer
+
+    const newTimer = setTimeout(() => {
+        setIsTyping(false);
+        console.log("set timer")
+        socket.emit("stop_typing" , {roomId , fromUserName:currentUser.username})
+    }, typingDelay);
+
+    setTypingTimer(newTimer);
+  }
+    
   useEffect(() => {
     // console.log(change)
     chat = Chat;
@@ -70,11 +93,13 @@ function ChatView({ chat, onBack }) {
 
   useEffect(() => {
     const userId = currentUser._id;
+    const currentUsername = currentUser.username
 
     // console.log(userId, roomId);
 
     // join the room as soon as user open chat
     socket.emit("join_room" , {roomId:roomId , userId:userId})
+    console.log("room joined")
 
 
     // listen for any recieving message on room
@@ -101,8 +126,31 @@ function ChatView({ chat, onBack }) {
       setChange(Math.random()*10);
     });
 
+    socket.on("typing", ({ fromUserName}) => {
+      
+      // setOtherTypingUser(true)
+      console.log("typing.."  , fromUserName)
+      if(fromUserName !== currentUsername){
+        setOtherTypingUser(true)
+        if(chat.isGroup===true){
+          setTypingUser(fromUserName)
+        }
+      }
+    })
+
+    socket.on("stop_typing", ({roomId,fromUserName}) => {
+      console.log("stop typing",roomId, fromUserName)
+      setOtherTypingUser(false);
+    })
+
     return () => {
-      socket.off('receive_message');
+      socket.disconnect('receive_message');
+      socket.off('typing');
+      socket.off('stop_typing');
+      // socket.on("stop_typing" , {roomId})
+      // socket.emit("stop_typing" , {roomId , fromUserName:currentUser.username})
+      // socket.disconnect('typing');
+      // socket.disconnect('stop_typing');
     };
   }, [roomId])
 
@@ -183,6 +231,7 @@ function ChatView({ chat, onBack }) {
         </Avatar>
         <div> 
           <h2 className="text-xl font-semibold">{Chat.name}</h2>
+         {otherUserTyping === true ? (<p>typing...</p>): (<></>)} 
           {
             Chat.isGroup === true ? (
               <p className='text-xs' >{Chat.members?.length} Members</p>
@@ -228,7 +277,7 @@ function ChatView({ chat, onBack }) {
             className="flex-grow"
             placeholder="Type a message..."
             value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
+            onChange={(e) => {setNewMessage(e.target.value) ; setTyping(true) ; handletyping()}}
           />
           <Button type="submit" size="icon">
             <Send className="h-4 w-4" />
@@ -239,7 +288,7 @@ function ChatView({ chat, onBack }) {
   )
 }
 
-export default function WhatsAppClone() {
+export default function mainChatBar() {
 
 
   const [searchTerm, setSearchTerm] = useState('')

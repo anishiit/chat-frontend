@@ -16,12 +16,13 @@ const loginUserUrl = `${backendurl}/api/user/login`
 
 export default function LoginPage() {
   const router = useRouter()
-
+  const[loading ,setLoding] =useState(false);
   const [error, setError] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
 
   const handleSubmit = async (e) => {
+    setLoding(true);
     e.preventDefault();
     setError("")
     // Check if any field is empty
@@ -43,7 +44,7 @@ export default function LoginPage() {
             maxAge: 30 * 24 * 60 * 60, // Cookie expiration time
             path: '/', // Accessible across all routes
           });
-
+          
           router.push('/message')
         })
         .catch((err) => {
@@ -54,7 +55,9 @@ export default function LoginPage() {
     } catch (error) {
       console.error(error);
       setError(error.message || "An error occurred")
+      
     }
+    setLoding(false);
   };
 
   return (
@@ -91,9 +94,22 @@ export default function LoginPage() {
                   required
                 />
               </div>
-              <Button className="w-full bg-indigo-600 text-white hover:bg-indigo-700" type="submit">
+              {
+                (loading === true ) ? (
+                  <Button  disabled={true} className="w-full bg-indigo-600 text-white hover:bg-indigo-700">
+                  <svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8h8a8 8 0 11-8 8 8 0 01-8-8z"></path>
+                    </svg>
+                    Loging in...
+              </Button>
+              ):(
+                <Button className="w-full bg-indigo-600 text-white hover:bg-indigo-700" type="submit">
                 Sign In
               </Button>
+              )
+              }
+              
             </div>
           </form>
         </CardContent>
