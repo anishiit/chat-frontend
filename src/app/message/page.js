@@ -18,7 +18,6 @@ import dayjs from 'dayjs'
 
 const ENDPOINT = "http://localhost:4000"
 
-
 let username;
 
 // Check if window is defined (i.e., code is running in the browser)
@@ -26,7 +25,7 @@ if (typeof window !== "undefined") {
   // Check if localStorage is available
   username = (localStorage.getItem("username") ? (localStorage.getItem("username")) : ("three"));
 }
-const backendurl = "http://localhost:8000";
+const backendurl = "https://chat-backend-rx0j.onrender.com";
 const getUserDataUrl = `${backendurl}/api/user/getuser`;
 const createNewChatUrl = `${backendurl}/api/chat/createnewchat`;
 const getUserChatsUrl = `${backendurl}/api/chat/getuserchats`;
